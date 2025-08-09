@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # PHP-FPM Service
+  app:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    container_name: daurix_app
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
+    volumes:
+      - ../:/var/www
+    networks:
+      - daurix-network
+    depends_on:
+      - db
+      - redis
+
+  # Nginx Service
+  web:
+    image: nginx:alpine
+    container_name: daurix_web
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8080:80"
+    volumes:
+      - ../:/var/www
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - daurix-network
+    depends_on:
+      - app
+
+  # MySQL Service
+  db:
+    image: mysql:8.0
+    container_name: daurix_db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ../scripts/schema.sql:/docker-entrypoint-initdb.d/1_schema.sql
+      - ../scripts/seed.sql:/docker-entrypoint-initdb.d/2_seed.sql
+    networks:
+      - daurix-network
+
+  # Redis Service
+  redis:
+    image: redis:6.2-alpine
+    container_name: daurix_redis
+    restart: unless-stopped
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - redisdata:/data
+    networks:
+      - daurix-network
+
+# Networks
+networks:
+  daurix-network:
+    driver: bridge
+
+# Volumes
+volumes:
+  dbdata:
+    driver: local
+  redisdata:
+    driver: local

@@ -1,0 +1,92 @@
+/* General Body & Wrapper Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+#wrapper {
+    display: flex;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    width: 250px;
+    transition: margin 0.25s ease-out;
+    background-color: var(--sidebar-bg);
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+    width: 100%;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+    flex-grow: 1;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    min-width: 100vw;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -250px;
+    }
+}
+
+/* Neumorphism Card Style */
+.card-neumorphic {
+    border-radius: 20px;
+    background: var(--neumorphic-bg);
+    border: none;
+    box-shadow: var(--neumorphic-shadow);
+    transition: all 0.3s ease-in-out;
+}
+
+.card-neumorphic:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--neumorphic-shadow-hover);
+}
+
+/* Main content GSAP transition placeholder */
+#main-content {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Teddy animation for login */
+#teddy {
+    width: 150px;
+    height: 150px;
+    /* Placeholder for lottie animation */
+    background-color: #eee;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+}
+
+/* Floating AI Chat Button */
+#zahra-chat-widget-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1050;
+}

@@ -1,0 +1,60 @@
+/* Light Theme (Default) */
+:root, [data-bs-theme="light"] {
+    --bs-body-bg: #f0f2f5;
+    --bs-body-color: #333;
+    --primary-color: #007bff;
+    --accent-color: #00E0FF; /* Teal accent */
+    --sidebar-bg: #ffffff;
+    --neumorphic-bg: #eef2f7;
+    --neumorphic-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff;
+    --neumorphic-shadow-hover: 12px 12px 24px #d1d9e6, -12px -12px 24px #ffffff;
+}
+
+/* Dark Theme */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #1a1a1a;
+    --bs-body-color: #e0e0e0;
+    --bs-light-bg-subtle: #2a2a2a;
+    --bs-border-color: #3a3a3a;
+    --primary-color: #00E0FF; /* Teal primary for dark mode */
+    --accent-color: #00aaff;
+    --sidebar-bg: #222222;
+    --bs-tertiary-bg: #252525;
+    --bs-light: #222;
+    --bs-light-text-emphasis: #fff;
+    --bs-dark-text-emphasis: #000;
+
+    /* Custom dark theme colors */
+    --bs-nav-link-color: #e0e0e0;
+
+    .navbar {
+        background-color: var(--sidebar-bg) !important;
+    }
+    .list-group-item {
+        background-color: var(--sidebar-bg) !important;
+        color: var(--bs-body-color) !important;
+        border-color: var(--bs-border-color);
+    }
+    .list-group-item-action:hover {
+        background-color: #333 !important;
+    }
+    .dropdown-menu {
+        background-color: #2c2c2c;
+    }
+    .dropdown-item {
+        color: #e0e0e0;
+    }
+    .dropdown-item:hover {
+        background-color: #3a3a3a;
+        color: #fff;
+    }
+    .card {
+        background-color: #252525 !important;
+        border-color: #3a3a3a;
+    }
+
+    /* Dark Neumorphism */
+    --neumorphic-bg: #2c2f36;
+    --neumorphic-shadow: 8px 8px 16px #212429, -8px -8px 16px #373a43;
+    --neumorphic-shadow-hover: 12px 12px 24px #212429, -12px -12px 24px #373a43;
+}
